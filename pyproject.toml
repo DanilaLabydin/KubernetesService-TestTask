@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "kubernetesservice-testtask"
+version = "0.1.0"
+description = ""
+authors = ["DanilaLabydin <labydin2605@mail.ru>"]
+readme = "README.md"
+packages = [{include = "kubernetesservice_testtask"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.103.1"
+uvicorn = {extras = ["standart"], version = "^0.23.2"}
+pydantic = "^2.3.0"
+
+
+[tool.poetry.group.dependencies.dependencies]
+black = "^23.7.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
