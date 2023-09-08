@@ -5,3 +5,8 @@ services:
     build: .
     ports:
       - 8000:8000
+    volumes:
+      - ./test_db:/app/db
+
+volumes:
+  db: 
