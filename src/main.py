@@ -17,7 +17,6 @@ app = FastAPI()
 
 
 Instrumentator().instrument(app).expose(app)
-# sudo docker run -p 9090:9090 -v /home/danila/Documents/github_repos/KubernetesService-TestTask/prometheus_data/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 
 
 def remove_object(temp_storage, expire_time, object_id):
@@ -29,11 +28,6 @@ def remove_object(temp_storage, expire_time, object_id):
         temp_storage["objects"].remove(object)
         if storage_ops.save_objects(temp_storage) is False:
             LOGGER.error("Error occured in deleting expires object")
-
-
-# @app.get("/metrics", tags=["Metrics"])
-# async def get_metrics():
-#     return
 
 
 @app.get("/probes/liveness", tags=["Probes"])
