@@ -1,6 +1,4 @@
 import time
-import os
-import json
 import logging
 
 from typing import Annotated, Union
@@ -28,12 +26,22 @@ def remove_object(temp_storage, expire_time, object_id):
             LOGGER.error("Error occured in deleting expires object")
 
 
-@app.get("/metrics", tags=["StorageService"])
+@app.get("/metrics", tags=["Metrics"])
 async def get_metrics():
     return TEMP_STORAGE
 
 
-@app.put("/objects/{key}", status_code=201, tags=["StorageService"])
+@app.get("/probes/liveness", tags=["Probes"])
+async def liveness_probe():
+    return
+
+
+@app.get("/probes/readiness", tags=["Probes"])
+async def readiness_probe():
+    return
+
+
+@app.put("/objects/{key}", status_code=201, tags=["Storage"])
 async def insert_object(
     key: int,
     response_model: schemas.JsonObject,
@@ -59,7 +67,7 @@ async def insert_object(
     return json_object
 
 
-@app.get("/objects/{key}", status_code=200, tags=["StorageService"])
+@app.get("/objects/{key}", status_code=200, tags=["Storage"])
 async def get_object(key: int):
     for object in TEMP_STORAGE["objects"]:
         if object.get("id") == key:
