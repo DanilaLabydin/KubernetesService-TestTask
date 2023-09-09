@@ -3,7 +3,7 @@ FROM python:3.10
 RUN mkdir -m 777 /app
 
 RUN pip install poetry
-COPY ./.env ./poetry.lock ./pyproject.toml /app/
+COPY ./poetry.lock ./pyproject.toml /app/
 
 WORKDIR /app/
 

@@ -8,5 +8,16 @@ services:
     volumes:
       - ./storage:/app/storage
 
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus_data/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
 volumes:
   storage: 
+  prometheus_data:

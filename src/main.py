@@ -3,6 +3,7 @@ import logging
 
 from typing import Annotated, Union
 from fastapi import FastAPI, HTTPException, Header, BackgroundTasks
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from . import schemas
 from . import storage_ops
@@ -13,6 +14,10 @@ LOGGER = logging.getLogger(__name__)
 
 
 app = FastAPI()
+
+
+Instrumentator().instrument(app).expose(app)
+# sudo docker run -p 9090:9090 -v /home/danila/Documents/github_repos/KubernetesService-TestTask/prometheus_data/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 
 
 def remove_object(temp_storage, expire_time, object_id):
@@ -26,9 +31,9 @@ def remove_object(temp_storage, expire_time, object_id):
             LOGGER.error("Error occured in deleting expires object")
 
 
-@app.get("/metrics", tags=["Metrics"])
-async def get_metrics():
-    return TEMP_STORAGE
+# @app.get("/metrics", tags=["Metrics"])
+# async def get_metrics():
+#     return
 
 
 @app.get("/probes/liveness", tags=["Probes"])
