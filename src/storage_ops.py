@@ -5,11 +5,12 @@ import logging
 
 LOGGER = logging.getLogger(__name__)
 EMPTY_STORAGE = {"objects": []}
-FILE_NAME = "storage/objects.json"
+STORAGE_PATH = "storage/objects.json"
+OBJECTS_KEY = "objects"
 
 
 def save_objects(storage):
-    with open(FILE_NAME, "w") as file:
+    with open(STORAGE_PATH, "w") as file:
         try:
             file.write(json.dumps(storage))
             return True
@@ -22,27 +23,27 @@ def save_objects(storage):
 
 
 def load_json_objects():
-    if not os.path.isfile(FILE_NAME):
+    if not os.path.isfile(STORAGE_PATH):
         return EMPTY_STORAGE
 
-    with open(FILE_NAME, "r") as file:
+    with open(STORAGE_PATH, "r") as file:
         try:
             data = json.load(file)
             if len(data) == 0:
-                LOGGER.info(f"Loaded storage is an empty fiele, set default storage")
+                LOGGER.info(f"Loaded storage is an empty file, set default storage.")
                 return EMPTY_STORAGE
 
-            json_objects = data.get("objects")
+            json_objects = data.get(OBJECTS_KEY)
 
             if json_objects is None:
                 LOGGER.error(
-                    f"Wrong {FILE_NAME} file structure: not 'objects' key, watch storage_example.json, set empty storage"
+                    f"Wrong {STORAGE_PATH} file structure: not 'objects' key, watch storage_example.json, set empty storage."
                 )
                 return EMPTY_STORAGE
 
             if not isinstance(json_objects, list):
                 LOGGER.error(
-                    f"Wrong {FILE_NAME} file structure: not lists in the 'objects' key, watch storage_example.json, set empty storage"
+                    f"Wrong {STORAGE_PATH} file structure: not lists in the 'objects' key, watch storage_example.json, set empty storage."
                 )
                 return EMPTY_STORAGE
 
@@ -50,13 +51,13 @@ def load_json_objects():
 
         except TypeError as e:
             LOGGER.error(
-                f"Error occured when you tried to load objects from {FILE_NAME} file, set empty storage: {e}"
+                f"Error occured when you tried to load objects from {STORAGE_PATH} file, set empty storage: {e}"
             )
             return EMPTY_STORAGE
 
 
 def find_duplicated_id(temp_storage, object_id):
-    for object in temp_storage["objects"]:
+    for object in temp_storage[OBJECTS_KEY]:
         if object.get("id") == object_id:
             return True
 
