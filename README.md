@@ -38,11 +38,19 @@
 
 ## Запуск через Docker
 ```
-$ docker-compose build
 $ docker-compose up
 ```
 
 ## Полезные ссылки
-    http://localhost:8000/docs  - API документация к сервису
-    http://localhost:9090/targets - Prometheus для сбора метрик
-    http://localhost:3000 - Grafana для визуализации метрик (логин и пароль: admin/admin)
+API документация к сервису
+```
+http://localhost:8000/docs
+```
+Prometheus для сбора метрик
+```
+http://localhost:9090/targets
+```
+Grafana для визуализации метрик (логин и пароль: admin/admin)
+```
+http://localhost:3000
+```
