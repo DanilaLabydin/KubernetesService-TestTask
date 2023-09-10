@@ -56,4 +56,7 @@ http://localhost:3000
 ```
 
 ## Визуализация метрик
-<img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg"/>
+Доступные дэшборды:
+<img src="https://github.com/DanilaLabydin/KubernetesService-TestTask/blob/main/images/dashboards.png"/>
+Кастомный дэшборд:
+<img src="https://github.com/DanilaLabydin/KubernetesService-TestTask/blob/main/images/custom_dashboard.jpg"/>
