@@ -54,3 +54,6 @@ Grafana для визуализации метрик (логин и пароль
 ```
 http://localhost:3000
 ```
+
+## Визуализация метрик
+<img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg"/>
